@@ -255,9 +255,10 @@
 
 <header>
   <div class="nav-wrap">
-    <div class="brand"><span class="ic">⚓</span><div>EL TIBURÓN<br><small>BAZAR · PRENDAS</small></div></div>
+    <div class="brand" id="brandBox"><span class="ic" id="brandIcon">⚓</span><div id="brandTextBox">EL TIBURÓN<br><small>BAZAR · PRENDAS</small></div></div>
     <nav class="links" id="navLinks"></nav>
     <div class="head-actions">
+      <button class="btn ghost sm" id="btnEditarTextos" style="display:none" onclick="abrirModalConfig()">✎ Textos</button>
       <button class="btn ghost sm" id="btnExport" style="display:none" onclick="exportarDatos()">⬇ Respaldo</button>
       <button class="icon-btn" id="btnAdminToggle" title="Modo administrador" onclick="toggleAdmin()">🔒</button>
     </div>
@@ -266,10 +267,10 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">COLECCIÓN BAZAR</span>
-    <h1>PRENDAS<br>EL TIBURÓN</h1>
-    <p>Diseños propios de la promoción, pensados para llevar el espíritu naval a donde vayas. Esta es una vista de muestra: las fotos y precios reales se agregarán próximamente.</p>
-    <a href="#catalogo" class="btn gold">Ver prendas ↓</a>
+    <span class="eyebrow" id="heroEyebrow">COLECCIÓN BAZAR</span>
+    <h1 id="heroTitulo">PRENDAS<br>EL TIBURÓN</h1>
+    <p id="heroTexto">Diseños propios de la promoción, pensados para llevar el espíritu naval a donde vayas. Esta es una vista de muestra: las fotos y precios reales se agregarán próximamente.</p>
+    <a href="#catalogo" class="btn gold" id="heroBoton">Ver prendas ↓</a>
   </div>
 </section>
 
@@ -293,8 +294,8 @@
 <footer>
   <div class="foot-wrap">
     <div class="foot-brand">
-      <div class="brand"><span class="ic">⚓</span>EL TIBURÓN</div>
-      <p>Bazar de cadetes de la Escuela Naval del Perú. Prendas, snacks y más — todo pensado y gestionado por la promoción.</p>
+      <div class="brand"><span class="ic" id="footBrandIcon">⚓</span><span id="footBrandNombre">EL TIBURÓN</span></div>
+      <p id="footBrandTexto">Bazar de cadetes de la Escuela Naval del Perú. Prendas, snacks y más — todo pensado y gestionado por la promoción.</p>
     </div>
     <div>
       <h4>PRENDAS</h4>
@@ -303,15 +304,15 @@
     <div>
       <h4>CONTACTO</h4>
       <ul>
-        <li><a href="#">Bazar — Escuela Naval del Perú</a></li>
-        <li><a href="#">Pregunta por WhatsApp</a></li>
-        <li><a href="#">Instagram del bazar</a></li>
+        <li><a href="#" id="footDireccion">Bazar — Escuela Naval del Perú</a></li>
+        <li><a href="#" id="footWhatsapp">Pregunta por WhatsApp</a></li>
+        <li><a href="#" id="footInstagram">Instagram del bazar</a></li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© <span id="anio"></span> Bazar El Tiburón</span>
-    <span>Página de muestra · pendiente de fotos y precios reales</span>
+    <span>© <span id="anio"></span> <span id="footCopyNombre">Bazar El Tiburón</span></span>
+    <span id="footNota">Página de muestra · pendiente de fotos y precios reales</span>
   </div>
 </footer>
 
@@ -366,6 +367,32 @@
   </div>
 </div>
 
+<!-- Modal textos del sitio -->
+<div class="modal-bg" id="modalConfig">
+  <div class="modal">
+    <h3>Editar textos del sitio</h3>
+    <p class="hint">Cambia el logo, los títulos y los textos generales de la página. Se guarda igual que las prendas: directo en GitHub.</p>
+    <div class="field"><label>Ícono del logo (emoji)</label><input type="text" id="cfIcono"></div>
+    <div class="field"><label>Nombre de marca (encabezado y pie de página)</label><input type="text" id="cfMarcaNombre"></div>
+    <div class="field"><label>Texto pequeño bajo el nombre (encabezado)</label><input type="text" id="cfMarcaSub"></div>
+    <div class="field"><label>Título de la pestaña del navegador</label><input type="text" id="cfTituloPagina"></div>
+    <div class="field"><label>Etiqueta sobre el título grande</label><input type="text" id="cfHeroEyebrow"></div>
+    <div class="field"><label>Título grande — línea 1</label><input type="text" id="cfHeroTitulo1"></div>
+    <div class="field"><label>Título grande — línea 2</label><input type="text" id="cfHeroTitulo2"></div>
+    <div class="field"><label>Texto debajo del título grande</label><input type="text" id="cfHeroTexto"></div>
+    <div class="field"><label>Texto del botón del hero</label><input type="text" id="cfHeroBoton"></div>
+    <div class="field"><label>Descripción de marca (pie de página)</label><input type="text" id="cfFooterDesc"></div>
+    <div class="field"><label>Dirección / ubicación (contacto)</label><input type="text" id="cfContactoDireccion"></div>
+    <div class="field"><label>Texto de WhatsApp (contacto)</label><input type="text" id="cfContactoWhatsapp"></div>
+    <div class="field"><label>Texto de Instagram (contacto)</label><input type="text" id="cfContactoInstagram"></div>
+    <div class="field"><label>Nota final del pie de página</label><input type="text" id="cfFooterNota"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" onclick="cerrarModalConfig()">Cancelar</button>
+      <button class="btn gold" onclick="guardarConfig()">Guardar</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -386,6 +413,23 @@ let GH = { owner:"", repo:"", branch:"main", token:"", sha:null };
 let editCtx = null;
 window._previewCache = {}; // path -> object URL local (para ver fotos recién subidas antes de que Pages republique)
 window._modalImagenes = [];
+
+const DEFAULT_CONFIG = {
+  logoIcono: "⚓",
+  marcaNombre: "EL TIBURÓN",
+  marcaSub: "BAZAR · PRENDAS",
+  tituloPagina: "Bazar El Tiburón · Prendas",
+  heroEyebrow: "COLECCIÓN BAZAR",
+  heroTitulo1: "PRENDAS",
+  heroTitulo2: "EL TIBURÓN",
+  heroTexto: "Diseños propios de la promoción, pensados para llevar el espíritu naval a donde vayas. Esta es una vista de muestra: las fotos y precios reales se agregarán próximamente.",
+  heroBotonTexto: "Ver prendas ↓",
+  footerDescripcion: "Bazar de cadetes de la Escuela Naval del Perú. Prendas, snacks y más — todo pensado y gestionado por la promoción.",
+  contactoDireccion: "Bazar — Escuela Naval del Perú",
+  contactoWhatsapp: "Pregunta por WhatsApp",
+  contactoInstagram: "Instagram del bazar",
+  footerNota: "Página de muestra · pendiente de fotos y precios reales"
+};
 
 function seedData(){
   const cats = ["Polos","Casacas","Gorras","Accesorios"];
@@ -425,6 +469,7 @@ async function cargarDatos(){
     DATA = seedData();
     toast("No se encontró data/prendas.json — mostrando catálogo de muestra.");
   }
+  DATA.config = Object.assign({}, DEFAULT_CONFIG, DATA.config||{});
 }
 
 /* ---------- GitHub API ---------- */
@@ -536,10 +581,33 @@ async function subirFotoGH(file, nombreRef){
 
 /* ---------- render ---------- */
 function render(){
+  renderMarca();
+  renderHero();
   renderNav();
   renderCatalogo();
   renderFooterLinks();
   document.getElementById("anio").textContent = new Date().getFullYear();
+}
+function renderMarca(){
+  const c = DATA.config;
+  document.title = c.tituloPagina;
+  document.getElementById("brandIcon").textContent = c.logoIcono;
+  document.getElementById("brandTextBox").innerHTML = esc(c.marcaNombre)+"<br><small>"+esc(c.marcaSub)+"</small>";
+  document.getElementById("footBrandIcon").textContent = c.logoIcono;
+  document.getElementById("footBrandNombre").textContent = c.marcaNombre;
+  document.getElementById("footBrandTexto").textContent = c.footerDescripcion;
+  document.getElementById("footDireccion").textContent = c.contactoDireccion;
+  document.getElementById("footWhatsapp").textContent = c.contactoWhatsapp;
+  document.getElementById("footInstagram").textContent = c.contactoInstagram;
+  document.getElementById("footNota").textContent = c.footerNota;
+  document.getElementById("footCopyNombre").textContent = "Bazar " + c.marcaNombre;
+}
+function renderHero(){
+  const c = DATA.config;
+  document.getElementById("heroEyebrow").textContent = c.heroEyebrow;
+  document.getElementById("heroTitulo").innerHTML = esc(c.heroTitulo1)+"<br>"+esc(c.heroTitulo2);
+  document.getElementById("heroTexto").textContent = c.heroTexto;
+  document.getElementById("heroBoton").textContent = c.heroBotonTexto;
 }
 function renderNav(){
   const nav = document.getElementById("navLinks");
@@ -612,6 +680,7 @@ function toggleAdmin(){
     limpiarSesionGH();
     document.getElementById("btnAdminToggle").textContent = "🔒";
     document.getElementById("btnExport").style.display = "none";
+    document.getElementById("btnEditarTextos").style.display = "none";
     toast("Modo público activado");
     render();
     return;
@@ -637,6 +706,7 @@ async function conectarGH(){
     cerrarModalGH();
     document.getElementById("btnAdminToggle").textContent = "🔓";
     document.getElementById("btnExport").style.display = "inline-flex";
+    document.getElementById("btnEditarTextos").style.display = "inline-flex";
     toast("Conectado — modo administrador activo");
     render();
   }catch(e){
@@ -787,6 +857,48 @@ function moverImagen(catId, prodId, dir){
   let next = (cur + dir + imgs.length) % imgs.length;
   imgs.forEach(function(img,i){ img.style.display = (i===next)?"":"none"; });
   dots.forEach(function(d,i){ d.classList.toggle("on", i===next); });
+}
+
+/* ---------- textos del sitio ---------- */
+function abrirModalConfig(){
+  const c = DATA.config;
+  document.getElementById("cfIcono").value = c.logoIcono;
+  document.getElementById("cfMarcaNombre").value = c.marcaNombre;
+  document.getElementById("cfMarcaSub").value = c.marcaSub;
+  document.getElementById("cfTituloPagina").value = c.tituloPagina;
+  document.getElementById("cfHeroEyebrow").value = c.heroEyebrow;
+  document.getElementById("cfHeroTitulo1").value = c.heroTitulo1;
+  document.getElementById("cfHeroTitulo2").value = c.heroTitulo2;
+  document.getElementById("cfHeroTexto").value = c.heroTexto;
+  document.getElementById("cfHeroBoton").value = c.heroBotonTexto;
+  document.getElementById("cfFooterDesc").value = c.footerDescripcion;
+  document.getElementById("cfContactoDireccion").value = c.contactoDireccion;
+  document.getElementById("cfContactoWhatsapp").value = c.contactoWhatsapp;
+  document.getElementById("cfContactoInstagram").value = c.contactoInstagram;
+  document.getElementById("cfFooterNota").value = c.footerNota;
+  document.getElementById("modalConfig").classList.add("open");
+}
+function cerrarModalConfig(){ document.getElementById("modalConfig").classList.remove("open"); }
+async function guardarConfig(){
+  DATA.config = {
+    logoIcono: document.getElementById("cfIcono").value.trim() || "⚓",
+    marcaNombre: document.getElementById("cfMarcaNombre").value.trim() || "BAZAR",
+    marcaSub: document.getElementById("cfMarcaSub").value.trim(),
+    tituloPagina: document.getElementById("cfTituloPagina").value.trim() || "Bazar",
+    heroEyebrow: document.getElementById("cfHeroEyebrow").value.trim(),
+    heroTitulo1: document.getElementById("cfHeroTitulo1").value.trim(),
+    heroTitulo2: document.getElementById("cfHeroTitulo2").value.trim(),
+    heroTexto: document.getElementById("cfHeroTexto").value.trim(),
+    heroBotonTexto: document.getElementById("cfHeroBoton").value.trim(),
+    footerDescripcion: document.getElementById("cfFooterDesc").value.trim(),
+    contactoDireccion: document.getElementById("cfContactoDireccion").value.trim(),
+    contactoWhatsapp: document.getElementById("cfContactoWhatsapp").value.trim(),
+    contactoInstagram: document.getElementById("cfContactoInstagram").value.trim(),
+    footerNota: document.getElementById("cfFooterNota").value.trim()
+  };
+  cerrarModalConfig();
+  render();
+  await guardarEnGitHub("Actualiza textos del sitio");
 }
 
 /* ---------- respaldo local (además de GitHub) ---------- */
