@@ -218,5 +218,21 @@
         }
       ]
     }
-  ]
+  ],
+  "config": {
+    "logoIcono": "⚓",
+    "marcaNombre": "ESCUELA NAVAL DEL PERÚ",
+    "marcaSub": "BAZAR NAVL · PRENDAS",
+    "tituloPagina": "Bazar El Tiburón · Prendas",
+    "heroEyebrow": "COLECCIÓN BAZAR",
+    "heroTitulo1": "PRENDAS",
+    "heroTitulo2": "EL TIBURÓN",
+    "heroTexto": "Diseños con identidad, pensados para llevar el espíritu naval a donde vayas.",
+    "heroBotonTexto": "Ver prendas ↓",
+    "footerDescripcion": "Bazar de la Escuela Naval del Perú",
+    "contactoDireccion": "Bazar — Escuela Naval del Perú",
+    "contactoWhatsapp": "WhatsApp",
+    "contactoInstagram": "Instagram",
+    "footerNota": "Página Oficial"
+  }
 }
