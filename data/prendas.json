@@ -1,0 +1,40 @@
+{
+  "categorias": [
+    {
+      "id": "cat0",
+      "nombre": "Polos",
+      "productos": [
+        { "id": "p0_0", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p0_1", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p0_2", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] }
+      ]
+    },
+    {
+      "id": "cat1",
+      "nombre": "Casacas",
+      "productos": [
+        { "id": "p1_0", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p1_1", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p1_2", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] }
+      ]
+    },
+    {
+      "id": "cat2",
+      "nombre": "Gorras",
+      "productos": [
+        { "id": "p2_0", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p2_1", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p2_2", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] }
+      ]
+    },
+    {
+      "id": "cat3",
+      "nombre": "Accesorios",
+      "productos": [
+        { "id": "p3_0", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p3_1", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] },
+        { "id": "p3_2", "nombre": "", "precio": "", "tallas": {"XS": false, "S": true, "M": true, "L": true, "XL": true, "XXL": false}, "disponible": true, "nuevo": false, "imagenes": [] }
+      ]
+    }
+  ]
+}
